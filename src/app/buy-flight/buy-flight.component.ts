@@ -11,10 +11,12 @@ export class BuyFlightComponent implements OnInit {
 
   _flights : Flight[];
   showBuyFlights = true;
+  errorMessage : string;
   selectedFlight : Flight;
 
   originFilter : string = null;
   destinationFilter : string = null;
+  loaded : boolean = false;
 
 
   constructor(private flightsService : FlightsService ){}
@@ -62,7 +64,11 @@ export class BuyFlightComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._flights = this.flightsService.getFlights();
+    this.flightsService.getFlights()
+        .subscribe(
+            (flights: Flight[])=>{this._flights = flights; this.loaded=true},
+             (error: any)=>this.errorMessage = error
+        );
   }
 }
 
