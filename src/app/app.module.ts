@@ -11,10 +11,13 @@ import { FlightFilterComponent } from './flight-filter/flight-filter.component';
 import { AccountComponent } from './account/account.component';
 import { MyFlightsComponent } from './my-flights/my-flights.component';
 import {routing} from "./app.routes";
+import { CurrencyConversionPipe } from './currency/currency-conversion.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent, HomeComponent, BuyFlightComponent, PaymentComponent, FlightFilterComponent, AccountComponent, MyFlightsComponent
+    AppComponent, HomeComponent, BuyFlightComponent,
+    PaymentComponent, FlightFilterComponent, AccountComponent,
+    MyFlightsComponent, CurrencyConversionPipe, CurrencyConversionPipe
   ],
   imports: [
     BrowserModule,

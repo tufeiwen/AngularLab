@@ -14,7 +14,7 @@
     <td>{{flight.departTime}}</td>
     <td>{{flight.arriveDay}}</td>
     <td>{{flight.arriveTime}}</td>
-    <td>{{flight.price}}</td>
+    <td>{{flight.price | currencyConversion : 0.5}}</td>
   </tr>
   </tbody>
 </table>
