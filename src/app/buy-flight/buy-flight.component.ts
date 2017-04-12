@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+//import the service which this component need use.
+import {FlightsService} from '../services/flights.service';
 @Component({
   selector: 'app-buy-flight',
   templateUrl: './buy-flight.component.html',
@@ -7,16 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BuyFlightComponent implements OnInit {
   //add variable flights which are dislayed by template
-  flights = FLIGHTS;
+  flights ;
   showBuyFlight=false;
-  constructor() { }
+  //inject service from constructor
+  constructor(private flightService:FlightsService) { }
 
   ngOnInit() {
+    this.flights=this.flightService.getFlights();
   }
   onClickBuyFlights(){
     this.showBuyFlight=!this.showBuyFlight;
   }
 }
+/*
 var FLIGHTS = [
   {
     "id": 11, "flightNumber": "FS1298", "origin": "LAX", "destination": "LHR", "departDay": "Monday",
@@ -31,3 +35,4 @@ var FLIGHTS = [
     departTime: "09:00", "arriveDay": "Monday", arriveTime: "09:00", "price": 99.99
   },
 ];
+*/
