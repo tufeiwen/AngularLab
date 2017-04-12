@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 //import the service which this component need use.
 import {FlightsService} from '../services/flights.service';
+import {Flight} from '../model/flight';
 @Component({
   selector: 'app-buy-flight',
   templateUrl: './buy-flight.component.html',
@@ -10,6 +11,7 @@ export class BuyFlightComponent implements OnInit {
   //add variable flights which are dislayed by template
   flights ;
   showBuyFlight=false;
+  selectedFlight:Flight;
   //inject service from constructor
   constructor(private flightService:FlightsService) { }
 
@@ -18,6 +20,10 @@ export class BuyFlightComponent implements OnInit {
   }
   onClickBuyFlights(){
     this.showBuyFlight=!this.showBuyFlight;
+  }
+  //receives param from its template
+  private onFlightClick(flight:Flight){
+    this.selectedFlight=flight;
   }
 }
 /*
