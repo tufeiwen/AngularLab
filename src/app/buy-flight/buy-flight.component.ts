@@ -34,10 +34,10 @@ export class BuyFlightComponent implements OnInit {
     if (this.originFilter != null) {
       return this._flights.map(
         (flight) => {
-          console.log(flight);
-          let match = flight.origin.startsWith(this.originFilter);
+         // console.log(flight);
+          let match = flight.origin.startsWith(this.originFilter);//return boolean
           if (match) {
-            // console.log(flight);
+            console.log("filtered flight: "+flight);
             return flight;
           }
         }
