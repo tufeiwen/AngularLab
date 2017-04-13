@@ -1,9 +1,10 @@
 <p>
   buy-flight works!
 </p>
+<app-flight-filter (onFilter)="onFilterChange($event)"></app-flight-filter>
 <table *ngIf=" showBuyFlight" class="table table-bordered table-condensed table-responsive">
   <tbody>
-    <!-- display variable flights in component class-->
+    <!-- display variable flights in component class, call get flights-->
     <tr *ngFor=" let flight of flights">
       <td><button (click)="onFlightClick(flight)">Buy</button></td>
       <td>{{flight.id }}</td>

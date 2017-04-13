@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 //import the service which this component need use.
-import {FlightsService} from '../services/flights.service';
-import {Flight} from '../model/flight';
+import { FlightsService } from '../services/flights.service';
+import { Flight } from '../model/flight';
 @Component({
   selector: 'app-buy-flight',
   templateUrl: './buy-flight.component.html',
@@ -9,21 +9,42 @@ import {Flight} from '../model/flight';
 })
 export class BuyFlightComponent implements OnInit {
   //add variable flights which are dislayed by template
-  flights ;
-  showBuyFlight=false;
-  selectedFlight:Flight;
+  _flights;
+  showBuyFlight = false;
+  selectedFlight: Flight;
+  originFilter: string = null;
   //inject service from constructor
-  constructor(private flightService:FlightsService) { }
+  constructor(private flightService: FlightsService) { }
 
   ngOnInit() {
-    this.flights=this.flightService.getFlights();
+    //init _flights with service
+    this._flights = this.flightService.getFlights();
   }
-  onClickBuyFlights(){
-    this.showBuyFlight=!this.showBuyFlight;
+  onClickBuyFlights() {
+    this.showBuyFlight = !this.showBuyFlight;
   }
   //receives param from its template
-  private onFlightClick(flight:Flight){
-    this.selectedFlight=flight;
+  private onFlightClick(flight: Flight) {
+    this.selectedFlight = flight;
+  }
+  onFilterChange(filterValue: string) {
+    this.originFilter = filterValue;
+  }
+  get flights(): Flight[] {
+    if (this.originFilter != null) {
+      return this._flights.map(
+        (flight) => {
+          console.log(flight);
+          let match = flight.origin.startsWith(this.originFilter);
+          if (match) {
+            // console.log(flight);
+            return flight;
+          }
+        }
+      ).filter(x => !!x);
+    } else {
+      return this._flights;
+    }
   }
 }
 /*
