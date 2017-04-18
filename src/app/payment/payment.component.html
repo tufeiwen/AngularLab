@@ -35,6 +35,7 @@
       <div class="form-group">
         <label for="name">Name</label>
         <input   [(ngModel)]="model.name" type="text" class="form-control" id="name" formControlName="name" placeholder="Name" >
+        <div *ngIf="!payForm.controls.name.valid">Name is required and must more than 5 charactors.</div>
       </div>
       <div class="form-group">
         <label for="address">Address</label>
